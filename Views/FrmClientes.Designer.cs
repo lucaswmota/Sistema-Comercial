@@ -83,6 +83,7 @@
             this.btnConsultar.Size = new System.Drawing.Size(75, 39);
             this.btnConsultar.TabIndex = 12;
             this.btnConsultar.UseVisualStyleBackColor = true;
+            this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
             // 
             // btnFechar
             // 
@@ -108,6 +109,7 @@
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // btnCancelar
             // 
@@ -120,6 +122,7 @@
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnAlterar
             // 
@@ -132,6 +135,7 @@
             this.btnAlterar.Text = "Alterar";
             this.btnAlterar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAlterar.UseVisualStyleBackColor = true;
+            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
             // 
             // btnIncluir
             // 
@@ -206,6 +210,7 @@
             this.cboCidades.Size = new System.Drawing.Size(246, 21);
             this.cboCidades.TabIndex = 2;
             this.cboCidades.SelectedIndexChanged += new System.EventHandler(this.cboCidades_SelectedIndexChanged);
+            this.cboCidades.TextChanged += new System.EventHandler(this.cboCidades_TextChanged);
             // 
             // label5
             // 
@@ -302,10 +307,14 @@
             this.dgvClientes.ReadOnly = true;
             this.dgvClientes.Size = new System.Drawing.Size(513, 150);
             this.dgvClientes.TabIndex = 13;
+            this.dgvClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellClick);
+            this.dgvClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellContentClick);
             // 
             // ofdArquivo
             // 
             this.ofdArquivo.FileName = "openFileDialog1";
+            this.ofdArquivo.Filter = "|*.jpg||*.png||*.jpeg||*.*";
+            this.ofdArquivo.FileOk += new System.ComponentModel.CancelEventHandler(this.ofdArquivo_FileOk);
             // 
             // FrmClientes
             // 
@@ -343,6 +352,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Clientes";
             this.Load += new System.EventHandler(this.FrmClientes_Load);
+            this.TextChanged += new System.EventHandler(this.FrmClientes_TextChanged);
             ((System.ComponentModel.ISupportInitialize)(this.picFoto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).EndInit();
             this.ResumeLayout(false);

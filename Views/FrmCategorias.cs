@@ -90,22 +90,27 @@ namespace _14688.Views
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            if (txtID.Text == "") return;
-
-            if (MessageBox.Show("Deseja Mesmo Excluir?", "Confirmação de Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
-                MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            if (txtID.Text == "")
             {
-                c = new Categoria()
-                {
-                    id = int.Parse(txtID.Text)
-                };
-                c.Excluir();
-
-                LimpaControles();
-                CarregarGrid("");
-
-                txtNome.Focus();
+                MessageBox.Show("Não Há itens para excluir", "Erro", MessageBoxButtons.OK);
             }
+            else
+            {
+                if (MessageBox.Show("Deseja Mesmo Excluir?", "Confirmação de Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                {
+                    c = new Categoria()
+                    {
+                        id = int.Parse(txtID.Text)
+                    };
+                    c.Excluir();
+
+                }
+            }
+            LimpaControles();
+            CarregarGrid("");
+
+            txtNome.Focus();
 
 
 

@@ -100,33 +100,33 @@ namespace _14688.Views
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Deseja mesmo exluir?", "Confirmação de Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question, 
-                MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            if (txtID.Text == "")
             {
-                if (txtID.Text == String.Empty) return;
-
-                c = new Cidade()
-                {
-                    id = int.Parse(txtID.Text),
-                    nome = txtNome.Text.ToUpper(),
-                    uf = txtUF.Text.ToUpper()
-
-                };
-                c.Excluir();
-
-                limpaControles();
-                CarregarGrid("");
-
-                txtNome.Focus();
+                MessageBox.Show("Não Há itens para excluir", "Erro", MessageBoxButtons.OK);
             }
             else
             {
+                if (MessageBox.Show("Deseja mesmo exluir?", "Confirmação de Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                {
+                    c = new Cidade()
+                    {
+                        id = int.Parse(txtID.Text),
+                        nome = txtNome.Text.ToUpper(),
+                        uf = txtUF.Text.ToUpper()
+
+                    };
+                    c.Excluir();
+                }
+
+
                 limpaControles();
                 CarregarGrid("");
 
                 txtNome.Focus();
+
+
             }
-              
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

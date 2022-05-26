@@ -45,10 +45,12 @@ namespace _14688.Models
         {
             try
             {
-                Banco.Comando = new MySqlCommand("INSERT INTO clientes(nome, idCidade dataNasc, renda, cpf, foto, venda) " +
-                "VALUES(@nome, @idCidade, @dataNasc, @renda, @cpf, @foto, @venda)", Banco.Conexao);
+                Banco.Conexao.Open();
+                Banco.Comando = new MySqlCommand("INSERT INTO clientes (nome, idCidade, dataNasc, renda, cpf, foto, venda) " +
+                "VALUES (@nome, @idCidade, @dataNasc, @renda, @cpf, @foto, @venda)", Banco.Conexao);
                 Banco.Comando.Parameters.AddWithValue("@nome", nome);
                 Banco.Comando.Parameters.AddWithValue("@idCidade", idCidade);
+                Banco.Comando.Parameters.AddWithValue("@dataNasc", dataNasc);
                 Banco.Comando.Parameters.AddWithValue("@renda", renda);
                 Banco.Comando.Parameters.AddWithValue("@cpf", cpf);
                 Banco.Comando.Parameters.AddWithValue("@foto", foto);
@@ -87,7 +89,7 @@ namespace _14688.Models
             }
         }
 
-        public void Exluir()
+        public void Excluir()
         {
             try
             {
