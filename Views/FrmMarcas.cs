@@ -100,7 +100,7 @@ namespace _14688.Views
         {
             if (txtID.Text == "")
             {
-                MessageBox.Show("Não Há itens para excluir", "Erro", MessageBoxButtons.OK);
+                MessageBox.Show("Nenhum item selecionado para exclusão", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {

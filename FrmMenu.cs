@@ -54,5 +54,11 @@ namespace _14688
         {
             Close();
         }
+
+        private void produtosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmProdutos form = new FrmProdutos();
+            form.Show();
+        }
     }
 }

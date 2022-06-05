@@ -168,11 +168,11 @@ namespace _14688.Views
         {
             if (txtID.Text == "")
             {
-                MessageBox.Show("Não Há itens para excluir", "Erro", MessageBoxButtons.OK);
+                MessageBox.Show("Nenhum item selecionado para exclusão", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
-                if (MessageBox.Show("Deseja mesmo exluir?", "Confirmação de Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+                if (MessageBox.Show("Deseja mesmo exluir o item selecionado?", "Confirmação de Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
                                 MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                 {
                     cl = new Cliente()
