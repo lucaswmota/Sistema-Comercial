@@ -86,7 +86,7 @@ namespace _14688.Views
 
         private void cboMarca_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataRowView reg= (DataRowView)cboMarca.SelectedItem;
+            DataRowView reg = (DataRowView)cboMarca.SelectedItem;
         }
 
         private void picFoto_Click(object sender, EventArgs e)

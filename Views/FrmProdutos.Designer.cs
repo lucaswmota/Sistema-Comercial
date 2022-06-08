@@ -99,6 +99,7 @@
             // txtEstoque
             // 
             this.txtEstoque.Location = new System.Drawing.Point(15, 105);
+            this.txtEstoque.MaxLength = 13;
             this.txtEstoque.Name = "txtEstoque";
             this.txtEstoque.Size = new System.Drawing.Size(155, 20);
             this.txtEstoque.TabIndex = 59;
@@ -124,6 +125,7 @@
             // txtPesquisa
             // 
             this.txtPesquisa.Location = new System.Drawing.Point(15, 199);
+            this.txtPesquisa.MaxLength = 40;
             this.txtPesquisa.Name = "txtPesquisa";
             this.txtPesquisa.Size = new System.Drawing.Size(403, 20);
             this.txtPesquisa.TabIndex = 64;
@@ -276,6 +278,7 @@
             // txtValorVenda
             // 
             this.txtValorVenda.Location = new System.Drawing.Point(267, 105);
+            this.txtValorVenda.MaxLength = 12;
             this.txtValorVenda.Name = "txtValorVenda";
             this.txtValorVenda.Size = new System.Drawing.Size(155, 20);
             this.txtValorVenda.TabIndex = 81;

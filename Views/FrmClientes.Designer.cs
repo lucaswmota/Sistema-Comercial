@@ -62,6 +62,7 @@
             // txtPesquisa
             // 
             this.txtPesquisa.Location = new System.Drawing.Point(12, 296);
+            this.txtPesquisa.MaxLength = 40;
             this.txtPesquisa.Name = "txtPesquisa";
             this.txtPesquisa.Size = new System.Drawing.Size(432, 20);
             this.txtPesquisa.TabIndex = 11;
@@ -162,6 +163,7 @@
             // txtNome
             // 
             this.txtNome.Location = new System.Drawing.Point(12, 75);
+            this.txtNome.MaxLength = 40;
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(327, 20);
             this.txtNome.TabIndex = 1;
@@ -234,6 +236,7 @@
             // 
             this.txtUF.AcceptsReturn = true;
             this.txtUF.Location = new System.Drawing.Point(264, 126);
+            this.txtUF.MaxLength = 2;
             this.txtUF.Name = "txtUF";
             this.txtUF.Size = new System.Drawing.Size(100, 20);
             this.txtUF.TabIndex = 3;
@@ -249,6 +252,7 @@
             // txtRenda
             // 
             this.txtRenda.Location = new System.Drawing.Point(370, 183);
+            this.txtRenda.MaxLength = 12;
             this.txtRenda.Name = "txtRenda";
             this.txtRenda.Size = new System.Drawing.Size(155, 20);
             this.txtRenda.TabIndex = 6;

@@ -48,6 +48,7 @@
             // txtPesquisa
             // 
             this.txtPesquisa.Location = new System.Drawing.Point(12, 153);
+            this.txtPesquisa.MaxLength = 20;
             this.txtPesquisa.Name = "txtPesquisa";
             this.txtPesquisa.Size = new System.Drawing.Size(327, 20);
             this.txtPesquisa.TabIndex = 36;
@@ -145,6 +146,7 @@
             // txtNome
             // 
             this.txtNome.Location = new System.Drawing.Point(12, 69);
+            this.txtNome.MaxLength = 20;
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(327, 20);
             this.txtNome.TabIndex = 30;
