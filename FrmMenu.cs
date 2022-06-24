@@ -60,5 +60,11 @@ namespace _14688
             FrmProdutos form = new FrmProdutos();
             form.Show();
         }
+
+        private void vendasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmVendas Form = new FrmVendas();
+            Form.Show();
+        }
     }
 }

@@ -122,6 +122,25 @@ namespace _14688
                     "foto varchar(100))", Conexao);
                 Comando.ExecuteNonQuery();
 
+                // Cria tabela Venda Cabecalho
+
+                Comando = new MySqlCommand("Create table if not exists vendaCab " +
+                    "(id integer auto_increment primary key, " +
+                    "idCliente int, " +
+                    "data date, " +
+                    "total decimal(10,2))", Conexao);
+                Comando.ExecuteNonQuery();
+
+                // Cria tabela venda Detalhe
+
+                Comando = new MySqlCommand("Create table if not exists vendaDet " +
+                    "(id integer auto_increment primary key, " +
+                    "idVendaCab int, " +
+                    "idProduto int, " +
+                    "qtde decimal(10,3), " +
+                    "valorUnitario decimal(10,2))", Conexao);
+                Comando.ExecuteNonQuery();
+
                 // Chama a funcao para fechar a conexao com o banco
                 FecharConexao();
 

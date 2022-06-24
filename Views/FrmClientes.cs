@@ -85,23 +85,30 @@ namespace _14688.Views
 
         private void btnIncluir_Click(object sender, EventArgs e)
         {
-            if (txtNome.Text == "") return;
-
-            cl = new Cliente()
+            try
             {
-                nome = txtNome.Text.ToUpper(),
-                idCidade = (int)cboCidades.SelectedValue,
-                dataNasc = dtpDataNascimento.Value,
-                renda = double.Parse(txtRenda.Text),
-                cpf = mskCPF.Text,
-                foto = picFoto.ImageLocation,
-                venda = chkVenda.Checked
-            };
-            cl.Incluir();
+                if (txtNome.Text == "" || txtNome.Text == null) return;
 
-            limpaControles();
-            carregarGrid("");
-            txtNome.Focus();
+                cl = new Cliente()
+                {
+                    nome = txtNome.Text.ToUpper(),
+                    idCidade = (int)cboCidades.SelectedValue,
+                    dataNasc = dtpDataNascimento.Value,
+                    renda = double.Parse(txtRenda.Text),
+                    cpf = mskCPF.Text,
+                    foto = picFoto.ImageLocation,
+                    venda = chkVenda.Checked
+                };
+                cl.Incluir();
+
+                limpaControles();
+                carregarGrid("");
+                txtNome.Focus();
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Confira os Dados", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         private void cboCidades_TextChanged(object sender, EventArgs e)
@@ -118,6 +125,8 @@ namespace _14688.Views
         {
             if(dgvClientes.RowCount >0)
             {
+                btnIncluir.Enabled = false;
+
                 txtID.Text = dgvClientes.CurrentRow.Cells["id"].Value.ToString();
                 txtNome.Text = dgvClientes.CurrentRow.Cells["nome"].Value.ToString();
                 cboCidades.Text = dgvClientes.CurrentRow.Cells["cidade"].Value.ToString();
@@ -137,26 +146,39 @@ namespace _14688.Views
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            if (txtID.Text == "") return;
-
-            cl = new Cliente()
+            if (txtID.Text == "" || txtID.Text == null)
+            { 
+                return;
+            }
+            else
             {
-                id = int.Parse(txtID.Text),
-                nome = txtNome.Text.ToUpper(),
-                idCidade = (int)cboCidades.SelectedValue,
-                dataNasc = dtpDataNascimento.Value,
-                renda = double.Parse(txtRenda.Text),
-                cpf = mskCPF.Text,
-                foto = picFoto.ImageLocation,
-                venda = chkVenda.Checked
-            };
 
-            cl.Alterar();
+                btnIncluir.Enabled = false;
 
-            limpaControles();
-            carregarGrid("");
+                cl = new Cliente()
+                {
+                    id = int.Parse(txtID.Text),
+                    nome = txtNome.Text.ToUpper(),
+                    idCidade = (int)cboCidades.SelectedValue,
+                    dataNasc = dtpDataNascimento.Value,
+                    renda = double.Parse(txtRenda.Text),
+                    cpf = mskCPF.Text,
+                    foto = picFoto.ImageLocation,
+                    venda = chkVenda.Checked
+                };
 
-            txtNome.Focus();
+                cl.Alterar();
+
+                limpaControles();
+                carregarGrid("");
+
+                txtNome.Focus();
+
+                btnIncluir.Enabled = true;
+
+            }
+
+            
         }
 
         private void FrmClientes_TextChanged(object sender, EventArgs e)
@@ -201,7 +223,25 @@ namespace _14688.Views
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-            carregarGrid(txtPesquisa.Text);
+            if (txtPesquisa.Text != "" || txtPesquisa.Text != null)
+            {
+                carregarGrid(txtPesquisa.Text);
+            }
+            else
+            {
+                MessageBox.Show("Digite algo para Pesquisar", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txtPesquisa.Focus();
+            }
+        }
+
+        private void txtRenda_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mskCPF_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
         }
     }
 }

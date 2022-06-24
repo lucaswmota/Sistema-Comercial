@@ -1,4 +1,4 @@
-﻿    using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -46,7 +46,7 @@ namespace _14688.Models
         {
             try
             {
-                Banco.Conexao.Open();
+                Banco.AbrirConexao();
                 Banco.Comando = new MySqlCommand("insert into produtos (descricao, " +
                     "idCategoria, " +
                     "idMarca, " +
@@ -80,14 +80,15 @@ namespace _14688.Models
         {
             try
             {
-                Banco.Conexao.Open();
+                Banco.AbrirConexao();
                 Banco.Comando = new MySqlCommand("update produtos set " +
-                    "descricao=@descricao, " +
-                    "idCategoria=@idCategoria, " +
-                    "idMarca=@idMarca, " +
-                    "estoque=@estoque " +
-                    "valorvenda=@valorVenda, " +
-                    "foto=@foto", Banco.Conexao);
+                    "descricao = @descricao, " +
+                    "idCategoria = @idCategoria, " +
+                    "idMarca = @idMarca, " +
+                    "estoque = @estoque, " +
+                    "valorvenda = @valorVenda, " +
+                    "foto = @foto " +
+                    "where id=@id; ", Banco.Conexao);
                 Banco.Comando.Parameters.AddWithValue("@descricao", descricao);
                 Banco.Comando.Parameters.AddWithValue("@idCategoria", idCategoria);
                 Banco.Comando.Parameters.AddWithValue("@idMarca", idMarca);
@@ -108,7 +109,7 @@ namespace _14688.Models
         {
             try
             {
-                Banco.Conexao.Open();
+                Banco.AbrirConexao();
                 Banco.Comando = new MySqlCommand("Delete from produtos where id=@id", Banco.Conexao);
                 Banco.Comando.Parameters.AddWithValue("@id", id);
                 Banco.Comando.ExecuteNonQuery();
@@ -120,6 +121,24 @@ namespace _14688.Models
             }
         }
 
+        public void atualizaEstoque(double qtde)
+        {
+
+            try
+            {
+                Banco.AbrirConexao();
+                Banco.Comando = new MySqlCommand(
+                    "update produtos set estoque = estoque - @qtde where id=@id", Banco.Conexao);
+                Banco.Comando.Parameters.AddWithValue("@qtde", qtde);
+                Banco.Comando.Parameters.AddWithValue("@id", id);
+                Banco.Comando.ExecuteNonQuery();
+                Banco.Conexao.Close();
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
     }
 }

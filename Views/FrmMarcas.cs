@@ -73,6 +73,8 @@ namespace _14688.Views
         {
             if (dgvMarcas.RowCount > 0)
             {
+                btnIncluir.Enabled = false;
+
                 txtID.Text=dgvMarcas.CurrentRow.Cells["id"].Value.ToString();
                 txtNome.Text=dgvMarcas.CurrentRow.Cells["marca"].Value.ToString();
             }
@@ -80,20 +82,33 @@ namespace _14688.Views
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            if(txtNome.Text==String.Empty) return;
 
-            c = new Marca()
+
+            if (txtNome.Text == String.Empty || txtNome.Text == null)
             {
-                id = int.Parse(txtID.Text),
-                marca = txtNome.Text.ToUpper()
-            };
+                return;
+            }
+            else
+            {
+                btnIncluir.Enabled = false;
 
-            c.Alterar();
+                c = new Marca()
+                {
+                    id = int.Parse(txtID.Text),
+                    marca = txtNome.Text.ToUpper()
+                };
 
-            LimpaControles();
-            carregarGrid("");
+                c.Alterar();
 
-            txtNome.Focus();
+                LimpaControles();
+                carregarGrid("");
+
+                txtNome.Focus();
+
+                btnIncluir.Enabled = true;
+            }
+
+            
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
@@ -133,7 +148,15 @@ namespace _14688.Views
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-            carregarGrid(txtPesquisa.Text);
+            if (txtPesquisa.Text != "" || txtPesquisa.Text != null)
+            {
+                carregarGrid(txtPesquisa.Text);
+            }
+            else
+            {
+                MessageBox.Show("Digite algo para Pesquisar", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txtPesquisa.Focus();
+            }
         }
     } 
 }

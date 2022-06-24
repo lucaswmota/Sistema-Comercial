@@ -231,10 +231,12 @@
             this.mskCPF.Name = "mskCPF";
             this.mskCPF.Size = new System.Drawing.Size(117, 20);
             this.mskCPF.TabIndex = 4;
+            this.mskCPF.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.mskCPF_MaskInputRejected);
             // 
             // txtUF
             // 
             this.txtUF.AcceptsReturn = true;
+            this.txtUF.Enabled = false;
             this.txtUF.Location = new System.Drawing.Point(264, 126);
             this.txtUF.MaxLength = 2;
             this.txtUF.Name = "txtUF";
@@ -251,11 +253,13 @@
             // 
             // txtRenda
             // 
+            this.txtRenda.CausesValidation = false;
             this.txtRenda.Location = new System.Drawing.Point(370, 183);
             this.txtRenda.MaxLength = 12;
             this.txtRenda.Name = "txtRenda";
             this.txtRenda.Size = new System.Drawing.Size(155, 20);
             this.txtRenda.TabIndex = 6;
+            this.txtRenda.TextChanged += new System.EventHandler(this.txtRenda_TextChanged);
             // 
             // picFoto
             // 

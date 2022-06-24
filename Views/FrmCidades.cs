@@ -71,6 +71,9 @@ namespace _14688.Views
 
         private void dgvCidades_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+
+            btnIncluir.Enabled = false;
+
             if(dgvCidades.RowCount >0)
             {
                 txtID.Text = dgvCidades.CurrentRow.Cells["id"].Value.ToString();
@@ -81,21 +84,33 @@ namespace _14688.Views
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            if(txtID.Text== String.Empty) return;
 
-            c = new Cidade()
+            if (txtID.Text == String.Empty || txtID.Text == null)
             {
-                id = int.Parse(txtID.Text),
-                nome = txtNome.Text.ToUpper(),
-                uf = txtUF.Text.ToUpper()
+                return;
+            }
+            else
+            {
+                btnIncluir.Enabled = false;
 
-            };
-            c.Alterar();
+                c = new Cidade()
+                {
+                    id = int.Parse(txtID.Text),
+                    nome = txtNome.Text.ToUpper(),
+                    uf = txtUF.Text.ToUpper()
 
-            limpaControles();
-            CarregarGrid("");
+                };
+                c.Alterar();
 
-            txtNome.Focus();
+                limpaControles();
+                CarregarGrid("");
+
+                txtNome.Focus();
+
+                btnIncluir.Enabled = true;
+            }
+
+            
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
@@ -140,7 +155,15 @@ namespace _14688.Views
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-            CarregarGrid(txtPesquisa.Text);
+            if (txtPesquisa.Text != "" || txtPesquisa.Text != null)
+            {
+                CarregarGrid(txtPesquisa.Text);
+            }
+            else
+            {
+                MessageBox.Show("Digite algo para Pesquisar", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txtPesquisa.Focus();
+            }
         }
     }
 }

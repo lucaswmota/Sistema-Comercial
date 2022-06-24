@@ -47,6 +47,9 @@ namespace _14688.Views
 
         private void dgvCategorias_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+
+            btnIncluir.Enabled = false;
+
             if (dgvCategorias.RowCount > 0)
             {
                 txtID.Text = dgvCategorias.CurrentRow.Cells["id"].Value.ToString();
@@ -73,19 +76,30 @@ namespace _14688.Views
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            if (txtNome.Text == string.Empty) return;
 
-            c = new Categoria()
+            if (txtNome.Text == "" || txtNome.Text == null)
             {
-                id = int.Parse(txtID.Text),
-                categoria = txtNome.Text.ToUpper()
-            };
-            c.Alterar();
+                return;
+            }
+            else
+            {
+                btnIncluir.Enabled = false;
 
-            LimpaControles();
-            CarregarGrid("");
 
-            txtNome.Focus();
+                c = new Categoria()
+                {
+                    id = int.Parse(txtID.Text),
+                    categoria = txtNome.Text.ToUpper()
+                };
+                c.Alterar();
+
+                LimpaControles();
+                CarregarGrid("");
+
+                txtNome.Focus();
+
+                btnIncluir.Enabled = true;
+            }
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
@@ -131,7 +145,29 @@ namespace _14688.Views
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-            CarregarGrid(txtPesquisa.Text);
+            if(txtPesquisa.Text != "" || txtPesquisa.Text != null)
+            {
+                CarregarGrid(txtPesquisa.Text);
+            }
+            else
+            {
+                MessageBox.Show("Digite algo para Pesquisar", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txtPesquisa.Focus();
+            }
+            
+        }
+
+        private void FrmCategorias_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+               if (txtNome.Text=="")
+                {
+                    this.Close();
+                }
+               else
+;
+            }
         }
     }
 }
